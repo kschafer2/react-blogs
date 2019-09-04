@@ -1,5 +1,8 @@
-export const fetchPosts = () => {
-  return {
-    type : 'FETCHED_POSTS'
-  };
+import jsonPlaceholder from '../apis/jsonPlaceholder';
+
+//asynchronous action creator
+export const fetchPosts = () => async dispatch => {
+  const response = await jsonPlaceholder.get('/posts');
+
+  dispatch({ type : 'FETCHED_POSTS', payload: response });
 };
